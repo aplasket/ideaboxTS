@@ -1,10 +1,5 @@
 import { Button, StyleSheet, Text, View } from "react-native";
-
-export interface IToDo {
-  text: string;
-  description: string;
-  completed: boolean;
-};
+import { IToDo } from "../types/IToDo";
 
 type Props = {
   toDoList: IToDo[];

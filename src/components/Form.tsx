@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import { IToDo } from "./ToDos";
+import { IToDo } from "../types/IToDo";
 
 function Form({addToDo}: {addToDo: (todo: IToDo) => void}): JSX.Element {
   const [title, setTitle] = useState<string>("");

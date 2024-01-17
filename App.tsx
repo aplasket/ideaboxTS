@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button, SafeAreaView } from "react-native";
 import Form from "./src/components/Form";
-import ToDos, { IToDo } from "./src/components/ToDos";
+import ToDos from "./src/components/ToDos";
+import { IToDo } from "./src/types/IToDo";
 
 export default function App() {
   const [toDoList, setToDos] = useState<IToDo[]>([]);
