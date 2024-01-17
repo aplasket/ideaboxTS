@@ -14,11 +14,14 @@ function Form({addToDo}: {addToDo: (todo: IToDo) => void}): JSX.Element {
       completed: false,
     }
 
-    if (title.trim() && description.trim())
+    if (title.trim() && description.trim()){
       addToDo(newToDo);
-    else showError(true);
+      showError(false);
+    } else {
+      showError(true);
       setTitle("");
       setDescription("");
+    }
   };
 
   return (
