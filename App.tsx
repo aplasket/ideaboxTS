@@ -25,7 +25,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>ToDo List</Text>
-      <View style={styles.inputWrapper}>
+      <View>
         <Form addToDo={addToDo} />
       </View>
       <Text style={styles.subtitle}> Your Tasks: </Text>
@@ -41,21 +41,6 @@ const styles = StyleSheet.create({
     padding: 35,
     alignItems: "center"
   },
-  inputWrapper: {
-    width: "100%",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 20
-  },
-  inputBox: {
-    width: 200,
-    borderColor: "purple",
-    borderRadius: 8,
-    borderWidth: 2,
-    padding: 12,
-    marginBottom: 8
-  },
   title: {
     fontSize: 40,
     marginBottom: 40,
@@ -67,21 +52,4 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: "purple"
   },
-  listItem: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    width: "100%",
-    marginBottom: 10,
-    paddingHorizontal: 10
-  },
-  addButton: {
-    alignItems: "flex-end"
-  },
-  task: {
-    width: 200
-  },
-  error: {
-    color: "red"
-  }
 });
