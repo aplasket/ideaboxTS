@@ -1,31 +1,14 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button, SafeAreaView } from "react-native";
-
-interface IToDo {
-  text: string;
-  description: string;
-  completed: boolean;
-}
+import Form from "./src/components/Form";
+import ToDos, { IToDo } from "./src/components/ToDos";
 
 export default function App() {
-  const [titleValue, setTitleValue] = useState<string>("");
-  const [descriptionValue, setDescriptionValue] = useState<string>("");
   const [toDoList, setToDos] = useState<IToDo[]>([]);
-  const [error, showError] = useState<Boolean>(false);
 
-  const handleSubmit = (): void => {
-    const newToDo: IToDo = {
-      text: titleValue,
-      description: descriptionValue,
-      completed: false,
-    }
-
-    if (titleValue.trim() && descriptionValue.trim())
-      setToDos([...toDoList, newToDo]);
-    else showError(true);
-    setTitleValue("");
-    setDescriptionValue("");
-  };
+  const addToDo = (newToDo: IToDo) =>{
+    setToDos([...toDoList, newToDo]);
+  }
 
   const removeItem = (index: number): void => {
     const newToDoList = [...toDoList];
@@ -43,39 +26,11 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>ToDo List</Text>
       <View style={styles.inputWrapper}>
-        <TextInput
-          placeholder="Enter a todo item"
-          value={titleValue}
-          onChangeText={setTitleValue}
-          style={styles.inputBox}
-        />
-        <TextInput
-          placeholder="Enter description"
-          value={descriptionValue}
-          onChangeText={setDescriptionValue}
-          style={styles.inputBox}
-        />
-        <Button title="Add Task" onPress={handleSubmit} />
+        <Form addToDo={addToDo} />
       </View>
-      {error && (<Text style={styles.error}>Error: all fields must be filled out</Text>)}
       <Text style={styles.subtitle}> Your Tasks: </Text>
       {!toDoList.length && <Text>No to do tasks available</Text>}
-      {toDoList.map((toDo: IToDo, index: number) => (
-        <View style={styles.listItem} key={`${index}_${toDo.text}`}>
-          <Text style={[styles.task, {textDecorationLine: toDo.completed ? "line-through" : "none" }]}>
-            {toDo.text}: {toDo.description}
-          </Text>
-          <Button
-            title={ toDo.completed ? "Completed" : "Complete" }
-            onPress={() => toggleComplete(index)}
-          />
-          <Button
-            title="X"
-            onPress={()=> removeItem(index)}
-            color="crimson"
-          />
-        </View>
-      ))}
+      <ToDos toDoList={toDoList} toggleComplete={toggleComplete} removeItem={removeItem}/>
     </SafeAreaView>
   )
 }
