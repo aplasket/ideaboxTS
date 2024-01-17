@@ -17,11 +17,16 @@ function Form({addToDo}: {addToDo: (todo: IToDo) => void}): JSX.Element {
     if (title.trim() && description.trim()){
       addToDo(newToDo);
       showError(false);
+      clearInput();
     } else {
       showError(true);
-      setTitle("");
-      setDescription("");
+      clearInput();
     }
+  };
+
+  function clearInput() {
+    setTitle("");
+    setDescription("");
   };
 
   return (
